@@ -1,0 +1,122 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.aironman.core.utils;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+/**
+ * Esta clase va a contener la siguiente info:
+ * el valor va a ser un objeto que contenga lo siguiente:
+   la lista de items, cada item con su precio, la cuenta a la que hacer el cargo
+   , el nombre del cliente
+   , la direccion del cliente, el cargo total
+ * @author alonso
+ */
+public class ApunteContable {
+
+    private List<Item> listaItems;
+    private Calendar fechaConfirmacion;
+    private String numeroCuenta;
+    private String nombreCliente;
+    private String direccionCliente;
+    private double cargoTotal;
+
+    public ApunteContable(String numeroCuenta,String nombreCliente,String direccionCliente)
+    {
+        listaItems = new ArrayList<Item>();
+        cargoTotal=0.0;
+        fechaConfirmacion=Calendar.getInstance();
+        this.direccionCliente=direccionCliente;
+        this.nombreCliente=nombreCliente;
+        this.numeroCuenta=numeroCuenta;
+    }
+
+    @Override
+    public String toString() 
+    {
+        StringBuilder sb = new StringBuilder();
+        for (Item item:listaItems)
+        {
+            sb.append(item);
+        }
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("ApunteContable. listaItems:" ).append(sb).append("numeroCuenta: ").append(numeroCuenta)
+                .append("nombreCliente: ").append(nombreCliente).append("direccionCliente: ").append(direccionCliente)
+                .append("cargoTotal: ").append(cargoTotal).append("fechaConfirmacion: ").append(fechaConfirmacion);
+        return buffer.toString();
+    }
+         
+
+    public void addItemToList(Item item)
+    {
+        this.listaItems.add(item);
+    }
+
+    /**
+     * @return the numeroCuenta
+     */
+    public String getNumeroCuenta() {
+        return numeroCuenta;
+    }
+
+    /**
+     * @param numeroCuenta the numeroCuenta to set
+     */
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+
+    /**
+     * @return the nombreCliente
+     */
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    /**
+     * @param nombreCliente the nombreCliente to set
+     */
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    /**
+     * @return the direccionCliente
+     */
+    public String getDireccionCliente() {
+        return direccionCliente;
+    }
+
+    /**
+     * @param direccionCliente the direccionCliente to set
+     */
+    public void setDireccionCliente(String direccionCliente) {
+        this.direccionCliente = direccionCliente;
+    }
+
+    /**
+     * @return the cargoTotal
+     */
+    public double getCargoTotal() {
+        return cargoTotal;
+    }
+
+    public Calendar getFechaConfirmacion() {
+        return fechaConfirmacion;
+    }
+
+    public List<Item> getListaItems() {
+        return listaItems;
+    }
+    
+    public void incrementarCargo(double cargo)
+    {
+        this.cargoTotal+=cargo;
+    }
+    
+}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+  <!-- ATENCION, AHORA MISMO TIENES ESTE FICHERO EMBEBIDO EN EL WEB.XML-->
+  <!-- an embedded broker -->
+
+  <bean id="broker" class="org.apache.activemq.xbean.BrokerFactoryBean">
+    <!-- hum, de donde saco este fichero de configuracion? tengo uno en $ACTIVE_MQ_HOME/conf/ pero da la sensacion que
+    este quiere tirar de uno guardado en el jar. puede ser una suposicion erronea.
+    Esto necesita que inicie el broker desde fuera? o esto lo inicializa desde aqui?-->
+    <property name="config" value="classpath:org/apache/activemq/xbean/activemq.xml" />
+  </bean>
+
+  <!-- a pooling based JMS provider -->
+  <bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
+    <property name="connectionFactory">
+      <bean class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL">
+          <value>tcp://localhost:61616</value>
+        </property>
+      </bean>
+    </property>
+  </bean>
+
+  <!-- Spring JMS Template -->
+  <bean id="myJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <property name="connectionFactory">
+      <!-- lets wrap in a pool to avoid creating a connection per send -->
+      <bean
+        class="org.springframework.jms.connection.SingleConnectionFactory">
+        <property name="targetConnectionFactory" ref="jmsFactory" />
+      </bean>
+    </property>
+  </bean>
+
+  <bean id="consumerJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <property name="connectionFactory" ref="jmsFactory"/>
+  </bean>
+
+  <!-- a sample POJO which uses a Spring JmsTemplate -->
+  <!--
+  necesitare que este productor, o algo parecido a esto, esté enganchado al OperationConfirmCartCallable
+  pues ahora mismo tiene enganchado el servicioMail y lo que quieres es que el servicioMail este enganchado al consumidor de la cola.
+  -->
+  <bean id="producer" class="org.apache.activemq.spring.SpringProducer">
+    <property name="template" ref="myJmsTemplate" />
+    <property name="destination" ref="destination" />
+    <property name="messageCount" value="10" />
+  </bean>
+
+
+  <!-- a sample POJO consumer -->
+  <!-- Este consumidor, o algo parecido a este consumidor, va a tener enganchado mediante autowiring el servicioMail-->
+  <bean id="consumer" class="org.apache.activemq.spring.SpringConsumer">
+    <property name="template" ref="consumerJmsTemplate" />
+    <property name="destination" ref="destination" />
+  </bean>
+
+  <bean id="destination" class="org.apache.activemq.command.ActiveMQTopic" autowire="constructor">
+    <constructor-arg value="org.apache.activemq.spring.Test.spring.topic" />
+  </bean>
+
+</beans>
+
+<!-- END SNIPPET: spring -->

@@ -1,0 +1,59 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.aironman.core.utils;
+
+/**
+ *
+ * @author alonso
+ */
+public class ClaveApunteContable {
+
+    private String legajo;
+
+    public ClaveApunteContable(String legajo)
+    {
+        this.legajo=legajo;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ClaveApunteContable other = (ClaveApunteContable) obj;
+        
+        if ((this.legajo == null) ? (other.legajo != null) : !this.legajo.equals(other.legajo)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 3;
+        hash = 47 * hash + (this.legajo != null ? this.legajo.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public String toString() {
+        return "ClaveApunteContable{ legajo=" + legajo + '}';
+    }
+
+    public String getLegajo() {
+        return legajo;
+    }
+
+    public void setLegajo(String legajo) {
+        this.legajo = legajo;
+    }
+
+}

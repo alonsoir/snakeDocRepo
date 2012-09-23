@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/cxf-demo~subversion/!svn/ver/9/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate
+END
+HibernateUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/cxf-demo~subversion/!svn/ver/9/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/HibernateUtil.java
+END
+ItemDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/cxf-demo~subversion/!svn/ver/26/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/ItemDao.java
+END
+ItemHibernateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/cxf-demo~subversion/!svn/ver/26/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/ItemHibernateDao.java
+END
+HistoricoUsuariosItemsDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/cxf-demo~subversion/!svn/ver/26/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/HistoricoUsuariosItemsDao.java
+END
+HistoricoUsuariosItemsHibernateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/svn/cxf-demo~subversion/!svn/ver/26/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/HistoricoUsuariosItemsHibernateDao.java
+END
+ApunteContableDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/cxf-demo~subversion/!svn/ver/26/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/ApunteContableDao.java
+END
+HistoricoItemsApuntesDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/cxf-demo~subversion/!svn/ver/26/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/HistoricoItemsApuntesDao.java
+END
+ApunteContableHibernateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/cxf-demo~subversion/!svn/ver/26/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/ApunteContableHibernateDao.java
+END
+UsuarioDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/cxf-demo~subversion/!svn/ver/26/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/UsuarioDao.java
+END
+HistoricoItemsApuntesHibernateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/cxf-demo~subversion/!svn/ver/26/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/HistoricoItemsApuntesHibernateDao.java
+END
+UsuarioHibernateDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/cxf-demo~subversion/!svn/ver/26/file_spring_cxf_example/src/main/java/com/aironman/core/hibernate/UsuarioHibernateDao.java
+END

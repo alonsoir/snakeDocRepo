@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/cxf-demo~subversion/!svn/ver/9/file_spring_cxf_example/src/main/java/com/aironman/core/utils
+END
+ClaveApunteContable.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/cxf-demo~subversion/!svn/ver/9/file_spring_cxf_example/src/main/java/com/aironman/core/utils/ClaveApunteContable.java
+END
+GenericDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/cxf-demo~subversion/!svn/ver/9/file_spring_cxf_example/src/main/java/com/aironman/core/utils/GenericDao.java
+END
+Constantes.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/cxf-demo~subversion/!svn/ver/37/file_spring_cxf_example/src/main/java/com/aironman/core/utils/Constantes.java
+END
+HibernateGenericDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/cxf-demo~subversion/!svn/ver/18/file_spring_cxf_example/src/main/java/com/aironman/core/utils/HibernateGenericDao.java
+END
+ApunteContable.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/cxf-demo~subversion/!svn/ver/9/file_spring_cxf_example/src/main/java/com/aironman/core/utils/ApunteContable.java
+END
+Item.java
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/cxf-demo~subversion/!svn/ver/9/file_spring_cxf_example/src/main/java/com/aironman/core/utils/Item.java
+END
+CarroDeLaCompra.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/cxf-demo~subversion/!svn/ver/16/file_spring_cxf_example/src/main/java/com/aironman/core/utils/CarroDeLaCompra.java
+END
+hibernate.cfg.xml
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/cxf-demo~subversion/!svn/ver/19/file_spring_cxf_example/src/main/java/com/aironman/core/utils/hibernate.cfg.xml
+END

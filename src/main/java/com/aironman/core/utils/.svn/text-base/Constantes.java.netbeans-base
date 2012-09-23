@@ -1,0 +1,19 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.aironman.core.utils;
+
+/**
+ *
+ * @author alonso
+ */
+public class Constantes {
+
+    public static final String estadoUsuarioActivo = "A";
+    /**
+     * 
+     */
+    public static final String estadoUsuarioInactivo="I";
+}

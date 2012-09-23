@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/cxf-demo~subversion/!svn/ver/9/file_spring_cxf_example/src/main/java/com/aironman/core/service/callable
+END
+OperationGetItemCallable.java
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/cxf-demo~subversion/!svn/ver/28/file_spring_cxf_example/src/main/java/com/aironman/core/service/callable/OperationGetItemCallable.java
+END
+OperationDeleteItemFromCartCallable.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/cxf-demo~subversion/!svn/ver/28/file_spring_cxf_example/src/main/java/com/aironman/core/service/callable/OperationDeleteItemFromCartCallable.java
+END
+OperationGetDescriptionItemCallable.java
+K 25
+svn:wc:ra_dav:version-url
+V 150
+/svn/cxf-demo~subversion/!svn/ver/28/file_spring_cxf_example/src/main/java/com/aironman/core/service/callable/OperationGetDescriptionItemCallable.java
+END
+OperationAddItemToCartCallable.java
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/cxf-demo~subversion/!svn/ver/28/file_spring_cxf_example/src/main/java/com/aironman/core/service/callable/OperationAddItemToCartCallable.java
+END
+OperationDeselectItemFromCartCallable.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/svn/cxf-demo~subversion/!svn/ver/9/file_spring_cxf_example/src/main/java/com/aironman/core/service/callable/OperationDeselectItemFromCartCallable.java
+END
+OperationConfirmCartCallable.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/cxf-demo~subversion/!svn/ver/34/file_spring_cxf_example/src/main/java/com/aironman/core/service/callable/OperationConfirmCartCallable.java
+END
+OperationLogInCallable.java
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/cxf-demo~subversion/!svn/ver/28/file_spring_cxf_example/src/main/java/com/aironman/core/service/callable/OperationLogInCallable.java
+END
+OperationLogOutCallable.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/cxf-demo~subversion/!svn/ver/28/file_spring_cxf_example/src/main/java/com/aironman/core/service/callable/OperationLogOutCallable.java
+END
