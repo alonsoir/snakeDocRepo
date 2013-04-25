@@ -71,20 +71,6 @@ public class CoreServiceImpl implements CoreService {
     @PostConstruct
     public void init()
     {
-        HashMap<Integer,Integer> map= new HashMap<Integer,Integer> ();
-        for (int i=0;i<11;i++){
-            map.put(i, i);
-        }
-        Iterator it = map.entrySet().iterator();
-        while (it.hasNext()){
-            Map.Entry e = (Map.Entry) it.next();
-            int entry = Integer.parseInt((String) e.getKey()) ;
-            if (entry % 2 == 0){
-              it.remove();
-            }
-            //(entry % 2 == 0) ? it.remove() : log.info("Initializing ExecutorService executor on CoreServiceImpl...");
-            
-        }
         if (log.isDebugEnabled()){
             log.info("Initializing ExecutorService executor on CoreServiceImpl...");
         }

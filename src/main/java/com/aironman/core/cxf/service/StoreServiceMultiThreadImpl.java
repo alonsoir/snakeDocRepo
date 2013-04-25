@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
  * implementacion del Endpoint del WS
  * @author alonso
  */
+@SuppressWarnings("restriction")
 @Service("storeServiceMT")
 @WebService(endpointInterface = "com.aironman.core.cxf.service.StoreService")
 public class StoreServiceMultiThreadImpl implements StoreService {

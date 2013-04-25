@@ -7,7 +7,6 @@ package com.aironman.core.service.callable;
 
 import com.aironman.core.exceptions.StoreException;
 import com.aironman.core.pojos.Items;
-import com.aironman.core.pojos.Usuarios;
 import com.aironman.core.service.ServicioItems;
 import com.aironman.core.service.ServicioUsuarios;
 import com.aironman.core.utils.CarroDeLaCompra;
@@ -31,10 +30,6 @@ public class OperationGetItemCallable implements Callable<Items>{
 
     public OperationGetItemCallable(String hash,String isbn,ServicioUsuarios servicioUsuarios,ServicioItems servicioItems)
     {
-        StringBuffer sb = new StringBuffer("Constructor tipado OperationGetItemCallable")
-                                    .append(" hash: ").append(hash)
-                                    .append(" isbn: ")
-                                    .append(isbn);
         this.hash=hash;
         this.isbn=isbn;
         this.servicioItems=servicioItems;
