@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       ">
+
+        <context:component-scan base-package="com.aironman.core" />
+
+
+        <context:component-scan base-package="com.aironman.core" use-default-filters="true">
+            <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+            <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+        </context:component-scan>
+
+        <tx:annotation-driven transaction-manager="txManager"/>
+
+        <bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+            <property name="sessionFactory" ref="sessionFactory"/>
+        </bean>
+
+        <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+            <property name="location" value="classpath:hibernate.properties"/>
+        </bean>
+
+        <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+            <property name="driverClassName" value="${database.driverClassName}"/>
+            <property name="url" value="${database.url}"/>
+            <property name="username" value="${database.userName}"/>
+            <property name="password" value="${database.password}"/>
+        </bean>
+
+    	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+            <property name="dataSource" ref="dataSource"/>
+
+            <property name="hibernateProperties">
+                <value>
+                    hibernate.dialect=${database.hibernate.dialect}
+                    hibernate.cache.provider_class=${hibernate.cache.provider_class}
+                    hibernate.show_sql=${hibernate.show_sql}
+                    hibernate.use_sql_comments=${hibernate.use_sql_comments}
+                    hibernate.jdbc.batch_size=${hibernate.jdbc.batch_size}
+                    hibernate.hbm2ddl.auto=${hibernate.hbm2ddl.auto}
+                    hibernate.generate_statistics=${hibernate.generate_statistics}
+                    hibernate.cache.use_structured_entries=${hibernate.cache.use_structured_entries}
+                </value>
+            </property>
+
+            <property name="annotatedClasses">
+                <list>
+                    <value>com.aironman.core.pojos.Usuarios</value>
+                    <value>com.aironman.core.pojos.Items</value>
+                    <value>com.aironman.core.pojos.ApuntesContables</value>
+                    <value>com.aironman.core.pojos.HistoricoItemsApuntes</value>
+                    <value>com.aironman.core.pojos.HistoricoItemsApuntesId</value>
+                    <value>com.aironman.core.pojos.HistoricoUsuariosItems</value>
+                </list>
+            </property>
+
+        </bean>
+    <!-- el pool de hilos Mi macBook tiene dos cores, los otros valores no los tengo muy claros aun. Con las pruebas de stress jmeter lo tendre mas claro-->
+        <bean id="poolExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+            <property name="corePoolSize" value="2" />
+            <property name="maxPoolSize" value="10" />
+            <property name="queueCapacity" value="25" />
+        </bean>
+        <!-- este bean sirve para mapear la fecha con el formato que prefiero -->
+        <bean id="jacksonMapper" class="org.codehaus.jackson.map.ObjectMapper">
+            <property name="serializationConfig.dateFormat">
+                <bean class="java.text.SimpleDateFormat">
+                    <constructor-arg value="yyyy-MM-dd'T'HH:mm:ss.SZ"/>
+                </bean>
+            </property>
+        </bean>
+
+        <bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
+
+</beans>

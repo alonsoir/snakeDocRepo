@@ -1,0 +1,83 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.aironman.core.service.callable;
+
+import com.aironman.core.exceptions.StoreException;
+import com.aironman.core.pojos.Item;
+import com.aironman.core.pojos.Usuario;
+import com.aironman.core.service.ServicioItems;
+import com.aironman.core.service.ServicioUsuarios;
+import java.util.concurrent.Callable;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ *
+ * @author alonso
+ */
+public class OperationDeselectItemFromCartCallable implements Callable<Boolean>{
+
+    private Log log = LogFactory.getLog(OperationDeselectItemFromCartCallable.class);
+
+    private String                      email;
+    private String                      isbn;
+    private ServicioUsuarios            servicioUsuarios;
+
+    private ServicioItems               servicioItems;
+
+    public OperationDeselectItemFromCartCallable(String email,String isbn,ServicioUsuarios servicioUsuarios,ServicioItems servicioItems)
+    {
+        log.info("Constructor TIPADO OperationDeselectItemFromCartCallable...");
+        this.email=email;
+        this.isbn=isbn;
+        this.servicioItems=servicioItems;
+        this.servicioUsuarios=servicioUsuarios;
+    }
+
+    /****
+     * 
+     * @return true if ok, false if ko
+     * @throws StoreException
+     */
+    public Boolean call() throws StoreException
+    {
+        StringBuffer sb = new StringBuffer("INIT deselectItemFromCart. email: ").append(email).append(" isbn: ").append(isbn);
+        log.info(sb);
+        //tienes que hacer las comprobaciones de existencia del email y el isbn
+        if (isbn==null || (isbn!=null && isbn.equals("")))
+        {
+            log.warn("El isbn no puede ser nulo o vacio. Cancelando operacion.");
+            return null;
+        }
+        if (email== null || (email!=null && email.equals("")))
+        {
+            log.warn("El email no puede ser nulo o vacio. Cancelando operacion.");
+            return null;
+        }
+        Item item = getServicioItems().getItem(isbn);
+        Usuario usuario = getServicioUsuarios().getUser(email);
+        boolean retorno = usuario.deleteItemFromList(item);
+        StringBuffer sbEND = new StringBuffer("END deselectItemFromCart. email: ")
+                                .append(email).append(" isbn: ").append(isbn).append(" retorno: ").append(retorno);
+
+        return retorno;
+    }
+
+    /**
+     * @return the servicioUsuarios
+     */
+    public ServicioUsuarios getServicioUsuarios() {
+        return servicioUsuarios;
+    }
+
+    /**
+     * @return the servicioItems
+     */
+    public ServicioItems getServicioItems() {
+        return servicioItems;
+    }
+
+}

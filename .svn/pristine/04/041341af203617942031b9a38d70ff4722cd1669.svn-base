@@ -1,0 +1,101 @@
+/**
+ * 
+ */
+package com.aironman.core.cxf.service;
+
+import com.aironman.core.exceptions.StoreException;
+import com.aironman.core.pojos.Items;
+import javax.jws.WebService;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+ /*
+  Interfaz del endpoint del WS
+ * @author Alonso Isidoro Roman
+ *
+ */
+@WebService
+@Path("/StoreService")
+public interface StoreService
+{
+    /*
+     * este ws se invoca de la forma siguiente:
+     *  //http://localhost:8080/CoreTienda/StoreMT/StoreService/logOut/LEGAJO1
+
+        o
+
+        //https://localhost:8181/CoreTienda/StoreMT/StoreService/logOut/LEGAJO1
+            TODO tienes que añadir seguridad al acceso de este ws
+            lo que no se es si estoy invocando adecuadamente la respuesta.
+     *      pregunta, como invoco el servicio para q me lo devuelva en un formato u otro?
+            luego tienes que escribir test de stress con jmeter y medirlo con jprobe o similar
+            basate en lo hecho en http://blogs.justenougharchitecture.com/?p=493
+
+            puede ser una buena aproximacion, basicamente necesitas un interceptor o un filtro que te haga eso
+            hay operaciones que pueden ser mejorables en cuanto a rendimiento.
+            No quieres que el email vaya sin cifrar, lo mismo que el pass, lo suyo seria que el pass fuera la lectura biometrica del usuario
+            Como hacer eso?
+    */
+    /**
+     * 
+     * @param hash
+     * @param pass
+     * @param lat
+     * @param lon
+     * @return
+     * @throws StoreException
+     */
+    @GET
+    @Path("logIn/{h}/{p}/{lat}/{lon}")
+    //@Consumes({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    //@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({ MediaType.APPLICATION_JSON })
+    boolean logIn(@PathParam("h")   String hash
+                 ,@PathParam("p")   String pass
+                 ,@PathParam("lat") String lat
+                 ,@PathParam("lon") String lon)                            throws StoreException;
+
+    @GET
+    @Path("logOut/{h}")
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({ MediaType.APPLICATION_JSON })
+    boolean logOut(@PathParam("h")   String hash)                          throws StoreException;
+
+    @GET
+    @Path("addItemToCart/{h}/{i}")
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({ MediaType.APPLICATION_JSON })
+    boolean addItemToCart(@PathParam("h")   String hash
+                         ,@PathParam("i") String isbn)                     throws StoreException;
+    
+    @GET
+    @Path("deleteItemFromCart/{h}/{i}")
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({ MediaType.APPLICATION_JSON })
+    boolean deleteItemFromCart(@PathParam("h")   String hash
+                              ,@PathParam("i") String isbn)                throws StoreException;
+
+    @GET
+    @Path("confirmCart/{h}/{p}")
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({ MediaType.APPLICATION_JSON })
+    boolean confirmCart(@PathParam("h") String hash
+                       ,@PathParam("p") String pass)                       throws StoreException;
+    @GET
+    @Path("getDescriptionItem/{i}")
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({ MediaType.APPLICATION_JSON })
+    String getDescriptionItem(@PathParam("i") String isbn)                 throws StoreException;
+
+    @GET
+    @Path("getItem/{h}/{i}")
+    @Consumes({ MediaType.APPLICATION_JSON })
+    @Produces({ MediaType.APPLICATION_JSON })
+    Items getItem(@PathParam("h") String hash
+                 ,@PathParam("i") String isbn)                             throws StoreException;
+}

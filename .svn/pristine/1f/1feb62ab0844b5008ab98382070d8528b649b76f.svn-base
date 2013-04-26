@@ -1,0 +1,216 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package com.aironman.core.pojos;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import com.aironman.core.pojos.Item;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import org.hibernate.validator.NotNull;
+/**
+ *
+ * @author Alonso Isidoro 
+ */
+@Entity
+@Table (name="Persona")
+public class Persona implements java.io.Serializable{
+
+    private static final long serialVersionUID = 1L;
+    
+    //identificador privado. Primera idea, se formara con el hash calculado a partir del nombre. Espero que sea unico xD
+    private String legajo;
+    //nombre completo de la persona
+    @NotNull
+    private String nombre;
+    //true activo, false inactivo. Por defecto inactivo.
+    //activo: usuario logado en el sistema.
+    @NotNull
+    private boolean status=false;
+    //igual es mejor usar un numero como tipo, pero querre comprobar que el formato es adecuado
+    @NotNull
+    private String numeroCuenta;
+    @NotNull
+    private String email;
+    @NotNull
+    private String password;
+    @NotNull
+    private String direccion;
+    //TODO como medida de seguridad, para que se loguee el cliente debera enviar las coordenadas adecuadas para cada tienda, vamos que tiene
+    //que estar situado en la tienda fisica
+    private String lat;
+    private String lon;
+    //ahora guardo el pojo directamente, esto igual te trae problemas, pues es un objeto gestionado por hibernate
+    //que pasa si actualizas el estado de este pojo fuera de este contexto?
+    private static final List<Item> cart = new ArrayList<Item>();
+
+    public Persona()
+    {
+    }
+
+    public Persona(String _nombre)
+    {
+        nombre=_nombre;
+        password=generatePassword();
+    }
+
+    public Persona(String _nombre, String _numeroCuenta,String _email,String direccion,String lat,String lon)
+    {
+        this.nombre=_nombre;
+        this.numeroCuenta=_numeroCuenta;
+        this.email=_email;
+        this.direccion=direccion;
+        this.lat=lat;
+        this.lon=lon;
+        password=generatePassword();
+    }
+
+    public void deleteAllItems()
+    {
+
+        this.getCart().clear();
+    }
+
+    public boolean addItemToListaItems(com.aironman.core.pojos.Item item)
+    {
+        return this.getCart().add(item);
+    }
+
+    public boolean deleteItemFromList(Item item)
+    {
+        return this.getCart().remove(item);
+    }
+
+    @Id
+    public String getLegajo() {
+        return legajo;
+    }
+
+    public void setLegajo(String legajo) {
+        this.legajo = legajo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * @return the status
+     */
+    public boolean isStatus() {
+        return status;
+    }
+
+    /**
+     * @param status the status to set
+     */
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the numeroCuenta
+     */
+    public String getNumeroCuenta() {
+        return numeroCuenta;
+    }
+
+    /**
+     * @param numeroCuenta the numeroCuenta to set
+     */
+    public void setNumeroCuenta(String numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return the cart
+     */
+    public List<Item> getCart() {
+        return cart;
+    }
+
+    /**
+     * @return the direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @param direccion the direccion to set
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    /**
+     * @return the lat
+     */
+    public String getLat() {
+        return lat;
+    }
+
+    /**
+     * @param lat the lat to set
+     */
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    /**
+     * @return the lon
+     */
+    public String getLon() {
+        return lon;
+    }
+
+    /**
+     * @param lon the lon to set
+     */
+    public void setLon(String lon) {
+        this.lon = lon;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    private String generatePassword()
+    {
+        Random random=new Random();
+        random.setSeed(new Date().getTime());
+        String generatedPass= String.valueOf(random.nextInt());
+        
+        return generatedPass;
+
+    }
+}
